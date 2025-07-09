@@ -6,6 +6,22 @@ const API_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
 function App() {
   const [currentDog, setCurrentDog] = useState(null);
   const [prevDogs, setPrevDogs] = useState([]);
+  const [banList, setBanList] = useState([]);
+
+  const handleAddToBanList = (attribute) => {
+    if (!banList.includes(attribute)) {
+      setBanList(prevList => [...prevList, attribute]);
+    }
+  };
+
+  const handleRemoveFromBanList = (attributeToRemove) => {
+    setBanList(prevList => prevList.filter(item => item !== attributeToRemove));
+  };
+
+  const isDogBanned = (dog) => {
+    const dogAttributes = [dog.name, dog.origin, dog.weight, dog.life_span];
+    return banList.some(bannedItem => dogAttributes.includes(bannedItem));
+  };
 
   const fetchRandomDog = () => {
     const query = `https://api.thedogapi.com/v1/images/search?has_breeds=1&api_key=${API_KEY}`;
@@ -21,21 +37,34 @@ function App() {
         const dogData = jsonData[0];
         const breedInfo = dogData.breeds[0];
 
+        if (!breedInfo.origin) {
+          console.warn("Fetched a dog with an unknown origin. Refetching...");
+          fetchRandomDog();
+          return;
+        }
+
         const newDog = {
           id: dogData.id,
           url: dogData.url,
           name: breedInfo.name,
           weight: `${breedInfo.weight.imperial} lbs`,
-          origin: breedInfo.origin || "Unknown",
+          origin: breedInfo.origin,
           life_span: breedInfo.life_span,
           temperament: breedInfo.temperament
         };
+
+        if (isDogBanned(newDog)) {
+          console.warn(`Banned dog fetched: ${newDog.name}. Refetching...`);
+          fetchRandomDog();
+          return;
+        }
 
         if (currentDog) {
           setPrevDogs(dogs => [currentDog, ...dogs]);
         }
 
         setCurrentDog(newDog);
+
       } else {
         console.warn("API returned a dog without breed info, fetching another...");
         fetchRandomDog();
@@ -46,10 +75,17 @@ function App() {
     }
   };
 
+  const getArticle = (word) => {
+    if (!word) return 'a';
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    const firstLetter = word[0].toLowerCase();
+    return vowels.includes(firstLetter) ? 'An' : 'A';
+  };
+
   return (
     <div className="whole-page">
       <div className="history">
-        {prevDogs.length > 1 && (
+        {prevDogs.length > 0 && (
         <div>
           <h3 style={{ fontWeight: "bolder"}}>Who have we seen so far?</h3>
           {prevDogs.map((dog) => (
@@ -59,7 +95,7 @@ function App() {
                 alt={`A ${dog.name} from a previous search`} 
                 style={{ width: '100px', height: '100px', margin: '5px', objectFit: 'cover', borderRadius: '8px'}} 
               />
-              <h4>A {dog.name} dog from {dog.origin}</h4>
+              <h4>{getArticle(dog.name)} {dog.name} dog from {dog.origin}</h4>
             </div>
           ))}
         </div>
@@ -68,14 +104,14 @@ function App() {
       <div className="main-card">
         <h1 className='heading'>Veni Vici!</h1>
         <h4>Discover dogs from your wildest dreams!</h4>
-        <p>🐶🐕🦮🐩🦴</p>
+        <p>🐶🐕🦮🐩🦴🐶🐕🦮🐩🦴</p>
         {currentDog && (
           <div className="dog-card">
             <div className="attributes">
-              <button className="attribute">{currentDog.name}</button>
-              <button className="attribute">{currentDog.origin}</button>
-              <button className="attribute">{currentDog.weight}</button>
-              <button className="attribute">{currentDog.life_span}</button>
+              <button onClick={() => handleAddToBanList(currentDog.name)} className="attribute">{currentDog.name}</button>
+              <button onClick={() => handleAddToBanList(currentDog.origin)} className="attribute">{currentDog.origin}</button>
+              <button onClick={() => handleAddToBanList(currentDog.weight)} className="attribute">{currentDog.weight}</button>
+              <button onClick={() => handleAddToBanList(currentDog.life_span)} className="attribute">{currentDog.life_span}</button>
             </div>
             <img src={currentDog.url} alt={currentDog.name} className="dog-image" />
           </div>
@@ -85,7 +121,13 @@ function App() {
       <div className="ban-list">
         <h2 style={{ fontWeight: "bolder"}}>Ban List</h2>
         <h4>Select an attribute in your listing to ban it</h4>
-
+        <div className="ban-list-items">
+          {banList.map((item) => (
+            <button key={item} onClick={() => handleRemoveFromBanList(item)} className="ban-item">
+              {item} <span>&times;</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   )
