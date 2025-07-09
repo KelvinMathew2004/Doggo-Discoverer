@@ -41,6 +41,50 @@
 .heading {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
+  margin: 0;
+}
+
+.dog-card {
+  margin-top: 1.5rem;
+}
+
+.attributes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;;
+}
+
+.attribute {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: #876415;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-bottom: 4px solid #7D4C0D;
+  transition: transform 0.1s, border-bottom 0.1s;
+}
+
+.attribute:hover {
+  filter: brightness(1.1);
+}
+
+.attribute:active {
+  transform: translateY(4px);
+  border-bottom: 0;
+}
+
+.dog-image {
+  margin-top: 1.5rem;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .ban-list {
@@ -52,6 +96,7 @@
 }
 
 .discover {
+  margin-top: 1.5rem;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
