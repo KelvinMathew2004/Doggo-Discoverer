@@ -14,12 +14,12 @@
   padding: 2.5rem;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: space-evenly;
 }
 
 .history {
   width: 250px;
+  align-self: flex-start;
   margin: 0rem 1.25rem 0rem 0rem;
   padding: 0rem 1rem 1rem 1rem;
   background-color: rgba(0, 0, 0, 0.2);
@@ -120,11 +120,12 @@
 .ban-list {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
   width: 250px;
   margin: 0rem 0rem 0rem 1.25rem;
-  padding: 3rem 2rem 2rem 2rem;
+  padding: 2rem;
   background-color: #636262;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -135,6 +136,7 @@
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .ban-item {

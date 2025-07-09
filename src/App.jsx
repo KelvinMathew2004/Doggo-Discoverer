@@ -117,8 +117,8 @@ function App() {
         <button onClick={fetchRandomDog} className="discover">🔀 Discover!</button>
       </div>
       <div className="ban-list">
-        <h2 style={{ fontWeight: "bolder", margin: 0}}>Ban List</h2>
-        <h4>Select an attribute in your listing to ban it</h4>
+        <h2 style={{ fontWeight: "bolder", margin: "0rem 0rem 1rem 0rem"}}>Ban List</h2>
+        <h4 style={{ margin: 0}}>Select an attribute in your listing to ban it</h4>
         <div className="ban-list-items">
           {banList.map((item) => (
             <button key={item} onClick={() => handleRemoveFromBanList(item)} className="ban-item">
