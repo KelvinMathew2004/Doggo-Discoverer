@@ -10,17 +10,20 @@
 
 .whole-page {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  padding: 2.5rem;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .history {
-  width: 200px;
-  margin: 2.5rem 1.25rem 2.5rem 2.5rem;
-  padding: 1rem;
+  width: 250px;
+  margin: 0rem 1.25rem 0rem 0rem;
+  padding: 0rem 1rem 1rem 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .main-card {
@@ -30,7 +33,7 @@
   align-items: center;
   align-self: center;
   width: 600px;
-  margin: 2.5rem 1.25rem 2.5rem 1.25rem;
+  margin: 0rem 1.25rem 0rem 1.25rem;
   padding: 2rem;
   background-color: #2D2C2C;
   opacity: 0.9;
@@ -42,6 +45,11 @@
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
   margin: 0;
+}
+
+.emojis {
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
 }
 
 .dog-card {
@@ -98,28 +106,35 @@
   background-color: #1a1a1a;
   color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border-bottom: 4px solid #000000;
+  transition: transform 0.1s, border-bottom 0.1s;
 }
 .discover:hover {
-  border-color: #646cff;
+  filter: brightness(1.1);
 }
-.discover:focus,
-.discover:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.discover:active {
+  transform: translateY(4px);
+  border-bottom: 0;
 }
 
 .ban-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 250px;
-  margin: 2.5rem 2.5rem 2.5rem 1.25rem;
-  padding: 1rem;
+  margin: 0rem 0rem 0rem 1.25rem;
+  padding: 3rem 2rem 2rem 2rem;
   background-color: #636262;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .ban-list-items {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .ban-item {

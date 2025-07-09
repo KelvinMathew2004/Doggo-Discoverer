@@ -84,9 +84,8 @@ function App() {
 
   return (
     <div className="whole-page">
-      <div className="history">
-        {prevDogs.length > 0 && (
-        <div>
+      {prevDogs.length > 0 && (
+        <div className="history">
           <h3 style={{ fontWeight: "bolder"}}>Who have we seen so far?</h3>
           {prevDogs.map((dog) => (
             <div key={dog.id}> 
@@ -100,11 +99,10 @@ function App() {
           ))}
         </div>
       )}
-      </div>
       <div className="main-card">
         <h1 className='heading'>Veni Vici!</h1>
-        <h4>Discover dogs from your wildest dreams!</h4>
-        <p>🐶🐕🦮🐩🦴🐶🐕🦮🐩🦴</p>
+        <p>Discover dogs from your wildest dreams!</p>
+        <a className="emojis">🐶 🐕 🐩 🦮 🦴</a>
         {currentDog && (
           <div className="dog-card">
             <div className="attributes">
@@ -119,7 +117,7 @@ function App() {
         <button onClick={fetchRandomDog} className="discover">🔀 Discover!</button>
       </div>
       <div className="ban-list">
-        <h2 style={{ fontWeight: "bolder"}}>Ban List</h2>
+        <h2 style={{ fontWeight: "bolder", margin: 0}}>Ban List</h2>
         <h4>Select an attribute in your listing to ban it</h4>
         <div className="ban-list-items">
           {banList.map((item) => (
