@@ -1,14 +1,8 @@
-# Web Development Project 4 - *Doggo Discoverer*
-
-Submitted by: **Kelvin Mathew**
+# *Doggo Discoverer*
 
 This web app: **Users can discover different breeds of dogs from all over the world, along with their respective weight, lifespan and country of origin. If already familiar with a breed then the breed name can be banned so future results including it could be omitted.**
 
-Time spent: **8** hours spent in total
-
-## Required Features
-
-The following **required** functionality is completed: 
+## Features
 
 - [x] **Application features a button that creates a new API fetch request on click and displays at least three attributes and an image obtained from the returned JSON data**
   - The type of attribute displayed for each image should be consistent across API calls (i.e. if you are using a cat API, and display the color, breed, and age in response to an initial API call, subsequent button clicks should also result in the color, breed, and age being displayed)
@@ -27,16 +21,11 @@ The following **required** functionality is completed:
   - Clicking on the API call button should not result in any image/attributes with attribute values in the ban list being displayed (ex. Using a cat API, if the ban list includes the value 'Siberian' for the breed attribute, clicking on the Discover button should never result in a Siberian cat being displayed)
   - Note: More attribute values on the ban list may result in a higher frequency of repeat results
   - [x] _To ensure an accurate grade, your recording **must** show that when clicked, an attribute in the ban list is immediately removed from the list of banned attributes_
-
-
-The following **optional** features are implemented:
-
 - [x] Multiple types of attributes are clickable and can be added to the ban list
 - [x] Users can see a stored history of their previously displayed  results from this session
   - A dedicated section of the application displays all the previous images/attributes seen before
   - Each time the API call button is clicked, the history updates with the newest API result
      
-
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
@@ -45,10 +34,6 @@ Here's a walkthrough of implemented user stories:
 
 GIF created with ...  
 [Kap](https://getkap.co/) for macOS
-
-## Notes
-
-Making the queries for the API call were bit confusing at first as the link had to be modified as well to include has_breed for breed info.
 
 ## License
 
